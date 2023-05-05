@@ -24,7 +24,7 @@ class _CardHomeWidgetState extends State<CardHomeWidget> {
     return Material(
       color: ThemeColors.backgroundColor,
       child: SizedBox(
-        height: size.height * 0.25,
+        height: size.height * 0.24,
         width: size.width,
         child: Container(
           decoration: BoxDecoration(
@@ -32,52 +32,64 @@ class _CardHomeWidgetState extends State<CardHomeWidget> {
             color: ThemeColors.backgroundCard,
           ),
           child: Padding(
-            padding: const EdgeInsets.only(top: 12, left: 14, right: 14),
+            padding: const EdgeInsets.only(
+              top: 12,
+              left: 14,
+              right: 14,
+              bottom: 12,
+            ),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.blue,
-                            ),
-                            height: size.height * 0.06,
-                            width: size.width * 0.12,
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.blue,
+                          ),
+                          height: size.height * 0.06,
+                          width: size.width * 0.12,
+                          child: SizedBox(
                             child: Center(
-                              child: widget.taskMock.icon,
+                              child: SizedBox(
+                                height: size.height * 0.25,
+                                child: widget.taskMock.icon,
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            width: size.width * 0.03,
+                        ),
+                        SizedBox(
+                          width: size.width * 0.03,
+                        ),
+                        Text(
+                          widget.taskMock.title,
+                          style: TextStyle(
+                            color: ThemeColors.titleColor,
+                            fontSize: size.height * 0.018,
                           ),
-                          Text(
-                            widget.taskMock.title,
-                            style: TextStyle(
-                              color: ThemeColors.titleColor,
-                              fontSize: size.height * 0.018,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Exercicios: ${widget.taskMock.quantityExercice}',
-                      style: const TextStyle(
-                        color: ThemeColors.subTitleColor,
+                    Row(children: [
+                      const Text(
+                        'Exercicios: ',
+                        style: TextStyle(
+                          color: ThemeColors.subTitleColor,
+                        ),
                       ),
-                    )
+                      Text(
+                        widget.taskMock.quantityExercice.toString(),
+                        style: const TextStyle(
+                          color: ThemeColors.titleColor,
+                        ),
+                      )
+                    ])
                   ],
                 ),
-                // SizedBox(
-                //   height: size.height * 0.04,
-                // ),
                 Center(
                   child: Text(
                     widget.taskMock.description,
@@ -90,23 +102,20 @@ class _CardHomeWidgetState extends State<CardHomeWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'lib/assets/svg/git.svg',
-                            color: Colors.white,
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          'lib/assets/svg/git.svg',
+                          color: Colors.white,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Acessar código fonte',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Acessar Repositório',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     CustomButton(
                       text: 'Ver mais',
